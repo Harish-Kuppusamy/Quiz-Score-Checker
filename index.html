@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .quiz-container {
+      background-color: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+    .question {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    #result {
+      margin-top: 20px;
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>Interactive Quiz</h2>
+
+    <div class="question">
+      <p>1. What is the capital of France?</p>
+      <label><input type="radio" name="q1" value="Paris"> Paris</label><br>
+      <label><input type="radio" name="q1" value="London"> London</label><br>
+      <label><input type="radio" name="q1" value="Berlin"> Berlin</label>
+    </div>
+
+    <div class="question">
+      <p>2. Which planet is known as the Red Planet?</p>
+      <label><input type="radio" name="q2" value="Mars"> Mars</label><br>
+      <label><input type="radio" name="q2" value="Venus"> Venus</label><br>
+      <label><input type="radio" name="q2" value="Jupiter"> Jupiter</label>
+    </div>
+
+    <div class="question">
+      <p>3. What is the largest animal in the world?</p>
+      <label><input type="radio" name="q3" value="Blue Whale"> Blue Whale</label><br>
+      <label><input type="radio" name="q3" value="Elephant"> Elephant</label><br>
+      <label><input type="radio" name="q3" value="Giraffe"> Giraffe</label>
+    </div>
+
+    <button id="submit">Submit</button>
+
+    <div id="result">
+      <h3>Your Quiz Result</h3>
+      <p>Score: <span id="score">0</span> / 3</p>
+      <button id="play-again">Play Again</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("submit").addEventListener("click", function () {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      const q3 = document.querySelector('input[name="q3"]:checked');
+
+      if (!q1 || !q2 || !q3) {
+        alert("Please answer all the questions before submitting.");
+        return;
+      }
+
+      let score = 0;
+      if (q1.value === "Paris") score++;
+      if (q2.value === "Mars") score++;
+      if (q3.value === "Blue Whale") score++;
+
+      document.getElementById("score").textContent = score;
+      document.getElementById("result").style.display = "block";
+    });
+
+    document.getElementById("play-again").addEventListener("click", function () {
+      location.reload();
+    });
+  </script>
+</body>
+</html>
